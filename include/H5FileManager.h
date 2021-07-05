@@ -315,7 +315,7 @@ bool H5FileManager::AddAttribute( string app_name, string attr_name, const vecto
         // If attribute belongs to a DataSet, then close it since it is opened in this function.
         if( !file_attr && !group_attr ){
             reinterpret_cast<H5::DataSet*>(foo)->close();
-            delete foo;
+            delete reinterpret_cast<H5::DataSet*>(foo);
             foo = 0;
         }
     }

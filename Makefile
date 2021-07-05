@@ -11,11 +11,14 @@ CFLAGS = -Wall -std=c++0x -fPIC -I./include -I/usr/local/include
 CFLAGS += -I/usr/local/hdf5/include
 LDFLAGS += -L/usr/local/hdf5/lib -lhdf5 -lhdf5_hl -lhdf5_cpp
 
-demo : demo.o
+all : demo
 
-
-demo.o : test/demo.o $(OBJ_FILES)
+demo : test/demo.o $(OBJ_FILES)
 	$(CC) -o $@ $^ ${LDFLAGS}
+
+test/demo.o : test/demo.cpp
+	@echo "compiling $@"
+	@$(CC) $(CFLAGS) -c $^ -o $@
 
 %.o : %.cpp
 	@echo "compiling $@"
