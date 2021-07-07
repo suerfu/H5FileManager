@@ -34,7 +34,16 @@ public:
     }
 
     bool OpenFile( const string& name, const string& flag="rw");
+        //!< Open a file specified by the file name as a string
+    
+    bool IsFileOpen(){
+        return file_ptr!=0;
+    }
+        //!< This function helps check if H5FileManager is managing an open file.
+    
     bool CloseFile();
+        //!< Close the current file.
+        //!< This method also closes all open attributes and groups.
 
     string GetFileName(){ return filename;}
 
